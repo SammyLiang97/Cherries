@@ -1,0 +1,17 @@
+{
+  "folders": [
+    {
+      "path": "."
+    },
+    {
+      "path": "packages/management"
+    },
+    {
+      "path": "packages/home-page-web"
+    },
+    {
+      "path": "packages/management-web"
+    }
+  ],
+  "settings": {}
+}
