@@ -10,7 +10,7 @@ const isDev = NODE_ENV === 'development';
 const webpackPlugins = [];
 
 if (isProd) {
-  webpackPlugins.push(BundleAnalyzerPlugin());
+  webpackPlugins.push(new BundleAnalyzerPlugin());
 }
 
 module.exports = {
