@@ -42,6 +42,7 @@
     "@types/react-dom": "^16.9.0",
     "@types/react-router-dom": "^5.1.5",
     "craco-antd": "^1.18.1",
+    "typescript-plugin-css-modules": "^2.4.0",
     "webpack-bundle-analyzer": "^3.8.0"
   }
 }
