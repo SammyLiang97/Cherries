@@ -1,12 +1,29 @@
 import React, { lazy } from 'react';
-import { Route } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 
 const ROUTE = '/dashboard';
 
-const Dashboard = lazy(() => import('../pages/Dashboard'));
+const Config = lazy(() => import('../pages/Config'));
+const Settings = lazy(() => import('../pages/Settings'));
 
 export default (
-  <Route key="dashboard" path={ROUTE}>
-    <Dashboard />
-  </Route>
+  <Switch>
+    <Route key="dashboard" path={ROUTE} exact>
+      <Redirect to={`${ROUTE}/config`} />
+    </Route>
+
+    <Route key="config" path={`${ROUTE}/config`}>
+      <Redirect to={`${ROUTE}/config/management-web-header-menu`} />
+      <Switch>
+        <Route path={`${ROUTE}/config/:configItem`}>
+          <Config />
+        </Route>
+      </Switch>
+    </Route>
+
+    <Route key="settings" path={`${ROUTE}/settings`}>
+      <Settings />
+    </Route>
+
+  </Switch>
 )
