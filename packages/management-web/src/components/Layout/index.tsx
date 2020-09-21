@@ -1,13 +1,25 @@
 import React, { FC } from 'react';
-import { Layout as AntdBaseLayout, Menu } from 'antd';
+import { Avatar, Dropdown, Layout as AntdBaseLayout, Menu } from 'antd';
 import { SelectEventHandler } from 'rc-menu/es/interface';
 import { useHistory } from 'react-router-dom';
 
+import avatarIMG from '../../assets/default_avatar.jpg';
 import styles from './style.less';
 
 const { Header, Footer } = AntdBaseLayout;
 
 const { Item: MenuItem } = Menu;
+
+const overLayMenu = () => {
+  return (
+    <Menu>
+      <MenuItem>
+        Log out
+      </MenuItem>
+    </Menu>
+  );
+};
+
 
 const Layout: FC = ({ children }) => {
   const history = useHistory();
@@ -18,7 +30,7 @@ const Layout: FC = ({ children }) => {
 
   return (
     <AntdBaseLayout>
-      <Header>
+      <Header className={styles.header}>
         <div className={styles.logo}>
           Management Web
         </div>
@@ -26,6 +38,9 @@ const Layout: FC = ({ children }) => {
           <MenuItem key="config">配置平台</MenuItem>
           <MenuItem key="settings">系统设置</MenuItem>
         </Menu>
+        <Dropdown overlay={overLayMenu} placement="bottomCenter" trigger={['click']}>
+          <Avatar src={avatarIMG} className={styles.avatar} />
+        </Dropdown>
       </Header>
       <AntdBaseLayout>
         {children}
