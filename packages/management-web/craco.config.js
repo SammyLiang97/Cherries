@@ -1,13 +1,19 @@
 const CracoAntDesignPlugin = require('craco-antd');
 const getCSSModuleLocalIdent = require('react-dev-utils/getCSSModuleLocalIdent');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
 const NODE_ENV = process.env.NODE_ENV || 'development';
 
 const isProd = NODE_ENV === 'production';
 const isDev = NODE_ENV === 'development';
 
-const webpackPlugins = [];
+const webpackPlugins = [
+  new MonacoWebpackPlugin({
+    languages: ['json'],
+    features: ['!colorDetector', '!iPadShowKeyboard', '!parameterHints', '!suggest'],
+  })
+];
 
 if (isProd) {
   webpackPlugins.push(new BundleAnalyzerPlugin());

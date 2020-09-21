@@ -50,7 +50,7 @@ const Layout: FC = ({ children }) => {
           <Avatar src={avatarIMG} className={styles.avatar} />
         </Dropdown>
       </Header>
-      <AntdBaseLayout>
+      <AntdBaseLayout className={styles.content}>
         {children}
       </AntdBaseLayout>
       <Footer className={styles.footer}>
