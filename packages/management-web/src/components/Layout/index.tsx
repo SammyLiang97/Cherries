@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Avatar, Dropdown, Layout as AntdBaseLayout, Menu } from 'antd';
 import { SelectEventHandler } from 'rc-menu/es/interface';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useRouteMatch } from 'react-router-dom';
 
 import avatarIMG from '../../assets/default_avatar.jpg';
 import styles from './style.less';
@@ -28,13 +28,21 @@ const Layout: FC = ({ children }) => {
     history.push(`/dashboard/${key}`);
   };
 
+  const matchP = useRouteMatch<{ type: string }>('/dashboard/:type')?.params;
+
+  let type;
+  if (matchP) {
+    type = matchP.type;
+  }
+
+
   return (
     <AntdBaseLayout>
       <Header className={styles.header}>
         <div className={styles.logo}>
           Management Web
         </div>
-        <Menu mode="horizontal" theme="dark" defaultSelectedKeys={['config']} onSelect={handleHeaderMenuSelect}>
+        <Menu mode="horizontal" theme="dark" defaultSelectedKeys={[type || 'config']} onSelect={handleHeaderMenuSelect}>
           <MenuItem key="config">配置平台</MenuItem>
           <MenuItem key="settings">系统设置</MenuItem>
         </Menu>
