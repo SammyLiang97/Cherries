@@ -26,4 +26,4 @@ export default (
     </Route>
 
   </Switch>
-)
+);

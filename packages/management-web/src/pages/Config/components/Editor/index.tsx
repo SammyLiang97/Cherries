@@ -30,7 +30,7 @@ const Editor: FC<Props> = ({ scope, value = '' }) => {
   }, []);
 
   useEffect(() => {
-    editor?.setValue(`//${scope}` + value);
+    editor?.setValue(`//${scope} config` + value);
   }, [editor, scope, value])
 
   return (
