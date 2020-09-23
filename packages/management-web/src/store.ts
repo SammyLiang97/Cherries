@@ -1,8 +1,10 @@
 import { init, RematchDispatch, RematchRootState } from '@rematch/core';
+import immerPlugin from '@rematch/immer'
 
 import models, { RootModel } from './models';
 
-const store = init({
+const store = init<RootModel>({
+  plugins: [(immerPlugin as FixedimmerPlugin)<RootModel>()],
   models
 });
 

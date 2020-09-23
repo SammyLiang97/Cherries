@@ -15,7 +15,7 @@ const Editor: FC<Props> = ({ scope, value = '' }) => {
 
   useEffect(() => {
     const e = monaco.editor.create(document.getElementById(EDITOR_ID) as HTMLDivElement, {
-      value: `//${scope}` + value,
+      value: value,
       language: 'json',
       lineNumbers: 'on',
       scrollBeyondLastLine: false,
@@ -30,8 +30,8 @@ const Editor: FC<Props> = ({ scope, value = '' }) => {
   }, []);
 
   useEffect(() => {
-    editor?.setValue(`//${scope} config` + value);
-  }, [editor, scope, value])
+    editor?.setValue(value);
+  }, [editor, value])
 
   return (
     <div id={EDITOR_ID} className={styles.editor}></div>

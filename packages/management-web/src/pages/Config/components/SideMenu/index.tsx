@@ -1,18 +1,26 @@
 import React, { FC } from 'react';
 import { Layout, Menu } from 'antd';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { SelectEventHandler } from 'rc-menu/es/interface';
 
 import styles from './style.less';
+import { Dispatch } from '../../../../store';
 
 const { Content, Sider } = Layout;
 const { Item: MenuItem, SubMenu } = Menu;
 
 const SideMenu: FC = ({ children }) => {
   const history = useHistory();
+  const dispatch = useDispatch<Dispatch>();
 
   const handleNavMenuSelect: SelectEventHandler = ({ key }) => {
     history.push(`/dashboard/config/${key}`);
+
+    dispatch.config.fetchConfigDataByKey({
+      key: key as string
+    });
+
   };
 
   return (
