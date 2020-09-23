@@ -22,7 +22,7 @@ const Editor: FC<Props> = ({ scope, value = '' }) => {
       automaticLayout: true,
       contextmenu: false,
       minimap: {
-        enabled: true,
+        enabled: false,
       },
     });
     setEditor(e);
