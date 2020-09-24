@@ -8,14 +8,17 @@ import store from './store';
 
 
 type Props =  {
-  config: ManagementResponse.Config.ManagementWeb.HeaderMenuData
+  baseConfigs: {
+    headerMenu: ManagementResponse.Config.ManagementWeb.HeaderMenuData;
+    sideMenu: ManagementResponse.Config.ManagementWeb.SideMenuData;
+  }
 }
 
-const App: FC<Props> = ({ config }) => {
+const App: FC<Props> = ({ baseConfigs }) => {
   return (
     <Provider store={store}>
       <BrowserRouter>
-        <Layout config={config}>
+        <Layout baseConfigs={baseConfigs}>
           <Routes />
         </Layout>
       </BrowserRouter>

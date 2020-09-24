@@ -18,14 +18,11 @@ const Config: FC = () => {
   const configData = useSelector<RootState, RootState['config']['configData']>((state) => state.config.configData);
 
   const editorValue = get(configData, `${configItem}.value`, {});
-
-  console.log(configItem);
-
-  console.log(configData[configItem]);
+  const version = get(configData, `${configItem}.version`);
 
   return (
     <SideMenu>
-      Config Page: {configItem}
+      Config Page: {configItem} | Current Version: {version}
       <br />
       <div className={styles.container}>
         <Editor scope={configItem} value={JSON.stringify(editorValue, null, 2)} />

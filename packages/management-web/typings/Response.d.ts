@@ -37,6 +37,7 @@ namespace ManagementResponse {
       export interface SideMenuValue {
         menus: SideMenu[];
       }
+      export type SideMenuData = CommonConfigData<SideMenuValue>;
       interface SideMenu {
         key: string;
         name: Name;
@@ -44,7 +45,7 @@ namespace ManagementResponse {
         children?: SideMenu[];
       }
 
-      export type SideMenuRes = CommonRes<CommonConfigData<SideMenuValue>>;
+      export type SideMenuRes = CommonRes<SideMenuData>;
     }
   }
 }

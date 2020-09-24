@@ -5,22 +5,32 @@ import * as serviceWorker from './serviceWorker';
 import { axios } from './services';
 
 
-const fetchManagementWebBaseConfig = async () => {
+const fetchManagementHeaderMenuConfig = async () => {
   const res = await axios.get<ManagementResponse.Config.ManagementWeb.HeaderMenuRes>('/api/config/management-web-header-menu');
 
   return res.data.data;
 };
 
+const fetchManagementSideMenuConfig = async () => {
+  const res = await axios.get<ManagementResponse.Config.ManagementWeb.SideMenuRes>('/api/config/management-web-side-menu');
+
+  return res.data.data;
+}
+
 const start = async () => {
 
-  const config = await fetchManagementWebBaseConfig();
+  const baseConfigs = await Promise.all([fetchManagementHeaderMenuConfig(), fetchManagementSideMenuConfig()])
+    .then(res => ({
+      headerMenu: res[0],
+      sideMenu: res[1]
+    }));
 
   const App = lazy(() => import('./App'));
 
   ReactDOM.render(
     <Suspense fallback={<>Loading...</>}>
       <React.StrictMode>
-        <App config={config} />
+        <App baseConfigs={baseConfigs} />
       </React.StrictMode>
     </Suspense>,
     document.getElementById('root')

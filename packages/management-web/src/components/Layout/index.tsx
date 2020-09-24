@@ -9,7 +9,10 @@ import { Dispatch } from '../../store';
 import { getLocale } from '../../helpers';
 
 type Props =  {
-  config: ManagementResponse.Config.ManagementWeb.HeaderMenuData
+  baseConfigs: {
+    headerMenu: ManagementResponse.Config.ManagementWeb.HeaderMenuData;
+    sideMenu: ManagementResponse.Config.ManagementWeb.SideMenuData;
+  };
 }
 
 const { Header, Footer } = AntdBaseLayout;
@@ -27,20 +30,23 @@ const overLayMenu = () => {
 };
 
 
-const Layout: FC<Props> = ({ children, config }) => {
+const Layout: FC<Props> = ({ children, baseConfigs }) => {
   const history = useHistory();
   const dispatch = useDispatch<Dispatch>();
 
-  const { menus, avatarURL } = config.value;
+  const { menus, avatarURL } = baseConfigs.headerMenu.value;
 
   useEffect(() => {
     dispatch.config.setConfigData({
       key: 'management-web-header-menu',
-      data: config
-    })
-  }, [config, dispatch.config]);
-
-
+      data: baseConfigs.headerMenu
+    });
+    dispatch.config.setConfigData({
+      key: 'management-web-side-menu',
+      data: baseConfigs.sideMenu
+    });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleHeaderMenuSelect: SelectEventHandler = ({ key }) => {
     const m = menus.find((v) => v.key === key) ;
