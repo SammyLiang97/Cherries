@@ -6,13 +6,13 @@ import { axios } from './services';
 
 
 const fetchManagementHeaderMenuConfig = async () => {
-  const res = await axios.get<ManagementResponse.Config.ManagementWeb.HeaderMenuRes>('/api/config/management-web-header-menu');
+  const res = await axios.get<Res.HeaderMenuConfigRes>('/api/config/management-web-header-menu');
 
   return res.data.data;
 };
 
 const fetchManagementSideMenuConfig = async () => {
-  const res = await axios.get<ManagementResponse.Config.ManagementWeb.SideMenuRes>('/api/config/management-web-side-menu');
+  const res = await axios.get<Res.SideMenuConfigRes>('/api/config/management-web-side-menu');
 
   return res.data.data;
 }

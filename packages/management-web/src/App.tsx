@@ -9,8 +9,8 @@ import store from './store';
 
 type Props =  {
   baseConfigs: {
-    headerMenu: ManagementResponse.Config.ManagementWeb.HeaderMenuData;
-    sideMenu: ManagementResponse.Config.ManagementWeb.SideMenuData;
+    headerMenu: Config.ManagementWeb.HeaderMenuData;
+    sideMenu: Config.ManagementWeb.SideMenuData;
   }
 }
 

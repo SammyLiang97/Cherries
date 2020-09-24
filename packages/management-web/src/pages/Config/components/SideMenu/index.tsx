@@ -9,7 +9,7 @@ import { Dispatch } from '../../../../store';
 import { getLocale } from '../../../../helpers';
 
 type Props = {
-  config: ManagementResponse.Config.ManagementWeb.SideMenuData
+  config: Config.ManagementWeb.SideMenuData
 }
 
 const { Content, Sider } = Layout;

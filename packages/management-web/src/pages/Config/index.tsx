@@ -21,7 +21,7 @@ const Config: FC = () => {
   const version = get(configData, `${key}.version`);
 
   return (
-    <SideMenu config={configData['management-web-side-menu'] as ManagementResponse.Config.ManagementWeb.SideMenuData}>
+    <SideMenu config={configData['management-web-side-menu'] as Config.ManagementWeb.SideMenuData}>
       Config Page: {key} | Current Version: {version}
       <br />
       <div className={styles.container}>

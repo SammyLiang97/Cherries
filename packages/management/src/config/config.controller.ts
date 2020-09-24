@@ -9,10 +9,9 @@ export class ConfigController {
     /**
      * mock
      */
-    console.log(key);
     switch (key) {
       case 'management-web-header-menu':
-        return {
+        const headMenuRes: Res.HeaderMenuConfigRes = {
           "success": true,
           "code": 0,
           "msg": "",
@@ -42,8 +41,9 @@ export class ConfigController {
             "version": "0.0.1"
           }
         }
+        return headMenuRes;
       case 'management-web-side-menu':
-        return {
+        const sideMenuRes: Res.SideMenuConfigRes = {
           "success": true,
           "code": 0,
           "msg": "",
@@ -56,7 +56,6 @@ export class ConfigController {
                     "zh-CN": "Management Web",
                     "en-US": "Management Web"
                   },
-                  "path": null,
                   "children": [
                     {
                       "key": "management-web-header-menu",
@@ -64,7 +63,6 @@ export class ConfigController {
                         "zh-CN": "Header 菜单配置",
                         "en-US": "Header Menu Config"
                       },
-                      "path": "management-web-header-menu"
                     },
                     {
                       "key": "management-web-side-menu",
@@ -72,7 +70,6 @@ export class ConfigController {
                         "zh-CN": "侧边栏菜单相关",
                         "en-US": "Side Menu Config"
                       },
-                      "path": "management-web-side-menu"
                     }
                   ]
                 },
@@ -84,13 +81,14 @@ export class ConfigController {
                   },
                 }
               ],
-              defaultSelectedKey: 'management-web-header-menu'
+              "defaultSelectedKey": 'management-web-header-menu'
             },
             "version": "0.0.1"
           }
-        }
+        };
+        return sideMenuRes;
       default:
-        return {
+        const commonRes: Res.CommonRes = {
           "success": false,
           "code": -1,
           "msg": "config data not found",
@@ -99,6 +97,7 @@ export class ConfigController {
             value: {}
           }
         }
+        return commonRes;
     }
   }
 
