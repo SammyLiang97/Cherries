@@ -22,6 +22,7 @@ namespace ManagementResponse {
     export namespace ManagementWeb {
       export interface HeaderMenuValue {
         menus: HeaderMenu[];
+        defaultSelectKey: string;
         avatarURL: string;
       }
       export type HeaderMenuData = CommonConfigData<HeaderMenuValue>
@@ -36,6 +37,7 @@ namespace ManagementResponse {
       
       export interface SideMenuValue {
         menus: SideMenu[];
+        defaultSelectedKey: string;
       }
       export type SideMenuData = CommonConfigData<SideMenuValue>;
       interface SideMenu {

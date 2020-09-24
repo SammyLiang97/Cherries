@@ -11,21 +11,21 @@ import { RootState } from '../../store';
 
 
 const Config: FC = () => {
-  const params = useParams<{ configItem: string }>();
+  const params = useParams<{ key: string }>();
 
-  const { configItem } = params;
+  const { key } = params;
 
   const configData = useSelector<RootState, RootState['config']['configData']>((state) => state.config.configData);
 
-  const editorValue = get(configData, `${configItem}.value`, {});
-  const version = get(configData, `${configItem}.version`);
+  const editorValue = get(configData, `${key}.value`, {});
+  const version = get(configData, `${key}.version`);
 
   return (
-    <SideMenu>
-      Config Page: {configItem} | Current Version: {version}
+    <SideMenu config={configData['management-web-side-menu'] as ManagementResponse.Config.ManagementWeb.SideMenuData}>
+      Config Page: {key} | Current Version: {version}
       <br />
       <div className={styles.container}>
-        <Editor scope={configItem} value={JSON.stringify(editorValue, null, 2)} />
+        <Editor scope={key} value={JSON.stringify(editorValue, null, 2)} />
         <div>
           <Button type="primary">Submit</Button>
         </div>

@@ -32,7 +32,6 @@ export default createModel<RootModel>()({
           data: res.data
         });
       } catch {}
-
     }
   })
 });

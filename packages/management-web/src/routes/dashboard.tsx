@@ -15,7 +15,7 @@ export default (
     <Route key="config" path={`${ROUTE}/config`}>
       <Redirect to={`${ROUTE}/config/management-web-header-menu`} />
       <Switch>
-        <Route path={`${ROUTE}/config/:configItem`}>
+        <Route path={`${ROUTE}/config/:key`}>
           <Config />
         </Route>
       </Switch>

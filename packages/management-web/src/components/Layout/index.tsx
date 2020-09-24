@@ -34,7 +34,7 @@ const Layout: FC<Props> = ({ children, baseConfigs }) => {
   const history = useHistory();
   const dispatch = useDispatch<Dispatch>();
 
-  const { menus, avatarURL } = baseConfigs.headerMenu.value;
+  const { menus, avatarURL, defaultSelectKey } = baseConfigs.headerMenu.value;
 
   useEffect(() => {
     dispatch.config.setConfigData({
@@ -49,10 +49,7 @@ const Layout: FC<Props> = ({ children, baseConfigs }) => {
   }, []);
 
   const handleHeaderMenuSelect: SelectEventHandler = ({ key }) => {
-    const m = menus.find((v) => v.key === key) ;
-    if (m) {
-      history.push(m.path);
-    }
+    history.push(`/dashboard/${key}`);
   };
 
   const matchP = useRouteMatch<{ type: string }>('/dashboard/:type')?.params;
@@ -70,7 +67,7 @@ const Layout: FC<Props> = ({ children, baseConfigs }) => {
         <div className={styles.logo}>
           Management Web
         </div>
-        <Menu mode="horizontal" theme="dark" defaultSelectedKeys={[type || 'config']} onSelect={handleHeaderMenuSelect}>
+        <Menu mode="horizontal" theme="dark" defaultSelectedKeys={[type || defaultSelectKey]} onSelect={handleHeaderMenuSelect}>
           {
             menus.map((m) => (
               <MenuItem key={m.key}>{getLocale(m.name)}</MenuItem>

@@ -25,7 +25,6 @@ export class ConfigController {
                     "zh-CN": "配置平台",
                     "en-US": "Configure platform"
                   },
-                  "path": "/dashboard/config",
                   "icon": null
                 },
                 {
@@ -34,10 +33,10 @@ export class ConfigController {
                     "zh-CN": "基础设置",
                     "en-US": "Basic Settings"
                   },
-                  "path": "/dashboard/settings",
                   "icon": null
                 }
               ],
+              "defaultSelectKey": 'config',
               "avatarURL": "https://sf1-dycdn-tos.pstatp.com/obj/eden-cn/nuhpspozlo/cherries/default_avatar.jpg",
             },
             "version": "0.0.1"
@@ -76,8 +75,16 @@ export class ConfigController {
                       "path": "management-web-side-menu"
                     }
                   ]
+                },
+                {
+                  "key": "homepage-web",
+                  "name": {
+                    "zh-CN": "Homepage Web",
+                    "en-US": "Homepage Web"
+                  },
                 }
-              ]
+              ],
+              defaultSelectedKey: 'management-web-header-menu'
             },
             "version": "0.0.1"
           }
