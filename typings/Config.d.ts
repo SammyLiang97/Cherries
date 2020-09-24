@@ -1,10 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-export interface i18nName {
-  'zh-CN': string;
-  'en-US': string;
-}
-
-export namespace Config {
+declare namespace Config {
   interface CommonConfigData<T = {}> {
     version: string;
     value: T;
@@ -34,16 +28,4 @@ export namespace Config {
       children?: SideMenu[];
     }
   }
-}
-
-export namespace Res {
-  export interface CommonRes<T = {}> {
-    success: boolean;
-    code: number;
-    msg: string;
-    data: T;
-  }
-
-  export type HeaderMenuConfigRes = CommonRes<Config.ManagementWeb.HeaderMenuData>;
-  export type SideMenuConfigRes = CommonRes<Config.ManagementWeb.SideMenuData>;
 }

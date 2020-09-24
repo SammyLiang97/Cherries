@@ -25,6 +25,11 @@
           "customMatcher": "\\.less$",
         }
       }
+    ],
+    "typeRoots": [
+      "node_modules/@types",
+      "typings",
+      "../../typings"
     ]
   },
   "include": [

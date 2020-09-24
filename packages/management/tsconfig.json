@@ -10,7 +10,12 @@
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "./",
-    "incremental": true
+    "incremental": true,
+    "typeRoots": [
+      "node_modules/@types",
+      "typings",
+      "../../typings"
+    ]
   },
   "include": [
     "src",
