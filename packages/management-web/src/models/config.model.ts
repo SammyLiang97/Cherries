@@ -32,6 +32,20 @@ export default createModel<RootModel>()({
           data: res.data
         });
       } catch {}
+    },
+    
+    async updateConfigDataByKey<T>(payload: { key: string, data: string }) {
+      const { key, data } = payload;
+
+      try {
+        const res = await axios.put<Res.CommonRes<Config.CommonConfigData<T>>>(`/api/config/${key}`, {
+          data
+        }).then(res => res.data);
+        dispatch.config.setConfigData({
+          key,
+          data: res.data
+        });
+      } catch {}
     }
   })
 });

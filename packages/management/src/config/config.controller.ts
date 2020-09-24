@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Body, Controller, Get, Param, Put } from '@nestjs/common';
 
 @Controller('config')
 export class ConfigController {
@@ -99,6 +99,21 @@ export class ConfigController {
         }
         return commonRes;
     }
+  }
+
+  @Put(':key')
+  updateConfigData(@Param('key') key, @Body('data') data) {
+    const res: Res.CommonConfigRes = {
+      success: true,
+      code: 0,
+      msg: "",
+      data: {
+        version: '0.0.2',
+        value: JSON.parse(data)
+      }
+    };
+    
+    return res;
   }
 
 }

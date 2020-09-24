@@ -6,6 +6,10 @@ declare namespace Res {
     data: T;
   }
 
-  export type HeaderMenuConfigRes = CommonRes<Config.ManagementWeb.HeaderMenuData>;
-  export type SideMenuConfigRes = CommonRes<Config.ManagementWeb.SideMenuData>;
+  export interface CommonConfigRes<T = {}> extends CommonRes {
+    data: Config.CommonConfigData<T>;
+  }
+
+  export type HeaderMenuConfigRes = CommonConfigRes<Config.ManagementWeb.HeaderMenuValue>;
+  export type SideMenuConfigRes = CommonConfigRes<Config.ManagementWeb.SideMenuValue>;
 }

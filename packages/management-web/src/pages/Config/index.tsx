@@ -1,17 +1,21 @@
-import React, { FC } from 'react';
+import React, { FC, useRef } from 'react';
 import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { get } from 'lodash';
+import { Button } from 'antd';
+import isJSON from 'validator/lib/isJSON';
+
 
 import styles from './style.less';
 import SideMenu from './components/SideMenu';
-import { Button } from 'antd';
-import Editor from './components/Editor';
-import { RootState } from '../../store';
+import Editor, { EditorRef } from './components/Editor';
+import { Dispatch, RootState } from '../../store';
 
 
 const Config: FC = () => {
   const params = useParams<{ key: string }>();
+  const editorRef = useRef<EditorRef>(null);
+  const dispatch = useDispatch<Dispatch>();
 
   const { key } = params;
 
@@ -20,14 +24,29 @@ const Config: FC = () => {
   const editorValue = get(configData, `${key}.value`, {});
   const version = get(configData, `${key}.version`);
 
+  const handleClick = () => {
+    if (editorRef.current) {
+      const data = editorRef.current.getValue();
+
+      if (isJSON(data as string)) {
+        dispatch.config.updateConfigDataByKey({
+          key,
+          data: data as string
+        });
+      }
+    }
+  };
+
+  console.log(configData);
+
   return (
     <SideMenu config={configData['management-web-side-menu'] as Config.ManagementWeb.SideMenuData}>
       Config Page: {key} | Current Version: {version}
       <br />
       <div className={styles.container}>
-        <Editor scope={key} value={JSON.stringify(editorValue, null, 2)} />
+        <Editor value={JSON.stringify(editorValue, null, 2)} ref={editorRef} />
         <div>
-          <Button type="primary">Submit</Button>
+          <Button type="primary" onClick={handleClick}>Submit</Button>
         </div>
       </div>
     </SideMenu>
